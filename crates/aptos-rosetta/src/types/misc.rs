@@ -23,7 +23,7 @@ static STAKE_GET_LOCKUP_SECS_FUNCTION: Lazy<EntryFunctionId> =
     Lazy::new(|| "0x1::stake::get_lockup_secs".parse().unwrap());
 
 static STAKING_CONTRACT_AMOUNTS_FUNCTION: Lazy<EntryFunctionId> =
-    Lazy::new(|| "0x1::stake::staking_contract_amounts".parse().unwrap());
+    Lazy::new(|| "0x1::staking_contract::staking_contract_amounts".parse().unwrap());
 
 /// Errors that can be returned by the API
 ///
@@ -314,7 +314,7 @@ pub async fn get_stake_balances(
                     type_arguments: vec![],
                     arguments: vec![
                         serde_json::Value::String(owner_account.address.to_string()),
-                        serde_json::Value::String(pool_address.to_string()),
+                        serde_json::Value::String(stake_pool.operator_address.to_string()),
                     ],
                 },
                 Some(version),
